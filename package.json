@@ -2,10 +2,11 @@
   "name": "sqid-pay-wrapper",
   "version": "1.0.0",
   "description": "A wrapper for sqid payment api",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack -w --mode development"
+    "dev": "webpack -w --mode development",
+    "transpile": "babel src -d dist --copy-files"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/studionone/sqid-pay-wrapper#readme",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "7.4.5",
     "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/preset-env": "7.4.5",
