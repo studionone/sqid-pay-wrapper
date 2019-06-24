@@ -4,4 +4,4 @@ const test = {
   key: "gello",
 }
 
-export { SQID, test }
+export default { SQID, test }
