@@ -1,0 +1,1 @@
+"use strict";var _SQID=require("./classes/SQID");Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"SQID",{enumerable:!0,get:function get(){return _SQID.SQID}});
