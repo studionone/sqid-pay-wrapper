@@ -2,7 +2,7 @@
   "name": "sqid-pay-wrapper",
   "version": "1.0.0",
   "description": "A wrapper for sqid payment api",
-  "main": "./dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack -w --mode development"
