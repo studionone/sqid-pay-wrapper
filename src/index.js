@@ -1,3 +1,7 @@
 import { SQID } from './classes/SQID'
 
-export { SQID }
+const test = {
+  key: "gello",
+}
+
+export { SQID, test }
