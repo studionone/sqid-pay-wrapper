@@ -2,11 +2,11 @@ import md5 from 'md5'
 import axios from 'axios'
 
 export class SQID {
-  constructor (apiKey, passPhrase, merchantCode, environmentBaseURI) {
+  constructor (apiKey, merchantCode, environmentBaseURI, passPhrase = null) {
     this.apiKey = apiKey
-    this.passPhrase = passPhrase
     this.merchantCode = merchantCode
     this.environmentBaseURI = environmentBaseURI
+    this.passPhrase = passPhrase
   }
 
   /**
@@ -26,7 +26,9 @@ export class SQID {
    */
   _sqidRequest = (payload, endpoint, methodName, primaryKey = null) => {
     const { merchantCode, apiKey, environmentBaseURI } = this
-    const hash = this._generateHash(primaryKey)
+    const hash = this.passPhrase
+      ? this._generateHash(primaryKey)
+      : null
 
     const data = {
       ...payload,
