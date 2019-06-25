@@ -59,7 +59,7 @@ this.SQID.getToken(params)
 
 Please view the linked SQID documentation for further information on each function
 
-___*__ indicates that the parameter is required._
+_* indicates that the parameter is required._
 
 ### getToken
 
