@@ -63,7 +63,7 @@ export class SQID {
    * @param  {string} token - The SQID token to get info for
    * @return {promise}      - A promise that resolves to the API response data
    */
-  tokenInfo = token => this._sqidRequest(token, 'post', 'tokenInfo', token)
+  tokenInfo = token => this._sqidRequest({ token }, 'post', 'tokenInfo', token)
 
   /**
    * Send a request to the Sqid API processTokenPayment endpoint
