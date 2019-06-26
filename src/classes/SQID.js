@@ -33,7 +33,7 @@ export class SQID {
 
     // Only add the payload to the request body for POST requests
     const data = {
-      ...(method === 'POST' ? payload : {}),
+      ...payload,
       apiKey,
       hash,
       hashValue: hash,
@@ -45,12 +45,13 @@ export class SQID {
       baseURL: environmentBaseURI,
       url: `/${endpoint}`,
       method,
-      data,
     }
 
-    // If it is a GET request, add the payload as query parameters
+    // If it is a GET request, add the payload as query parameters, otherwise add to the body
     if (method === 'GET') {
-      options.params = payload
+      options.params = data
+    } else {
+      options.data = data
     }
 
     return axios(options)
