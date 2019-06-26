@@ -31,7 +31,6 @@ export class SQID {
       ? this._generateHash(primaryKey)
       : null
 
-    // Only add the payload to the request body for POST requests
     const data = {
       ...payload,
       apiKey,
