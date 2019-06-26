@@ -53,8 +53,22 @@ export class SQID {
 
   /**
    * Send a request to the Sqid API getToken endpoint
-   * @param  {object} data       - A payload object to be sent with the request
-   * @return {promise}           - A promise that resolves to the API response data
+   * @param  {object} data - A payload object to be sent with the request
+   * @return {promise}     - A promise that resolves to the API response data
    */
   getToken = data => this._sqidRequest(data, 'post', 'getToken')
+
+  /**
+   * Send a request to the Sqid API tokenInfo endpoint
+   * @param  {string} token - The SQID token to get info for
+   * @return {promise}      - A promise that resolves to the API response data
+   */
+  tokenInfo = token => this._sqidRequest({ token }, 'post', 'tokenInfo', token)
+
+  /**
+   * Send a request to the Sqid API processTokenPayment endpoint
+   * @param  {string} data - A payload object to be sent with the request
+   * @return {promise}      - A promise that resolves to the API response data
+   */
+  processTokenPayment = data => this._sqidRequest(data, 'post', 'processTokenPayment', data.amount)
 }

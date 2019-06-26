@@ -31,7 +31,7 @@ The required parameters to initialise the class are
 | environmentBaseURI    | SQID base url e.g `https://api.staging.sqidpay.com`                                                       |
 | passPhrase (Optional) | SQID secret pass phrase used for generating the hash. This is not required for all methods i.e `getToken` |
 
-### Available functions
+### Function calls
 
 To use any of the available functions call the function on the initialised class, sending only the dynamic data for the customer/merchant. Below is an example of the getToken function:
 
@@ -51,10 +51,26 @@ const params = {
 }
 
 this.SQID.getToken(params)
-      .then(({ data }) => { ... })
-      .catch((error) => { ... })
+      .then(data => { ... })
+      .catch(error => { ... })
 ```
 
-| Function                                                                         | Description                     |
-|--------------------------------------------------------------------------------- |---------------------------------|
-| [getToken](https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605679/getToken) | Generate a token for a customer |
+Note: If a function only requires one parameter there is no need to pass an object, it will accept the parameter as a primitive type (string, number, etc.) e.g:
+
+```javascript
+// One parameter
+this.SQID.tokenInfo('981406061677')
+
+// Multiple
+this.SQID.getToken({ ...params })
+```
+
+## Available functions
+
+Please view the linked SQID documentation for further information for required parameters and any additional information about the function.
+
+| Function            | Accepts | Documentation                                                                       |
+|---------------------|---------|-------------------------------------------------------------------------------------|
+| getToken            | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605679/getToken                |
+| tokenInfo           | string  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/541130753/tokenInfo             |
+| processTokenPayment | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605704/processTokenPayment     |
