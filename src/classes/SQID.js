@@ -86,7 +86,7 @@ export class SQID {
    * @return {promise}     - A promise that resolves to the API response data
    */
   processTokenPayment = (data) => {
-    const primaryKey = data.amount.toFixed(2)
+    const primaryKey = data.amount
     return this._sqidRequest(data, 'POST', 'post', 'processTokenPayment', primaryKey)
   }
 
