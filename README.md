@@ -55,58 +55,24 @@ this.SQID.getToken(params)
       .catch(error => { ... })
 ```
 
+Note: If a function only requires one parameter there is no need to pass an object, it will accept the parameter as a primitive type (string, number, etc.) e.g:
+
+```javascript
+// One parameter
+this.SQID.tokenInfo('981406061677')
+
+// Multiple
+this.SQID.getToken({ ...params })
+```
+
 ## Available functions
 
-Please view the linked SQID documentation for further information on each function
+Please view the linked SQID documentation for further information for required parameters and any additional information about the function.
 
-_* indicates that the parameter is required._
-
-### getToken
-
-https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605679/getToken
-
-Generate a token for a customer, which can be stored for later use.
-
-To adhere to PCI compliance this function **must** be run client side. Card details can not be passed through a server
-
-Note: _passPhrase not required when initialising the SQID wrapper_
-
-| Parameters                |
-|---------------------------|
-| customerName __*__        |
-| customerHouseStreet __*__ |
-| customerSuburb __*__      |
-| customerCity __*__        |
-| customerState             |
-| customerCountry __*__     |
-| customerPostCode __*__    |
-| customerMobile            |
-| customerEmail             |
-| customerIP                |
-| cardNumber __*__          |
-| cardExpiry __*__          |
-| cardName __*__            |
-
-### tokenInfo
-
-https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/541130753/tokenInfo
-
-Retrieve information about the token provided.
-
-| Parameters  |
-|-------------|
-| token __*__ |
-
-### processTokenPayment
-
-https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605704/processTokenPayment
-
-Process a transaction using a token instead of card information
-
-| Parameters        |
-|-------------------|
-| amount __*__      |
-| currency __*__    |
-| referenceID __*__ |
-| token __*__       |
-| cardCSC           |
+| Function            | Accepts | Documentation                                                                       |
+|---------------------|---------|-------------------------------------------------------------------------------------|
+| getToken            | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605679/getToken                |
+| tokenInfo           | string  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/541130753/tokenInfo             |
+| processTokenPayment | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605704/processTokenPayment     |
+| getPaymentPage      | string  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/544079873/Get+Payment+Page      |
+| payPaymentPage      | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/544473089/Pay+with+Payment+Page |
