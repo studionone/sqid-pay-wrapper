@@ -46,6 +46,13 @@ export class SQID {
       method,
     }
 
+    const protocolPrefix = 'https://'
+
+    // Prepend the protocol to the base URL if it is not already included
+    if (environmentBaseURI.substr(0, protocolPrefix.length) !== protocolPrefix) {
+      options.baseURL = `${protocolPrefix}${environmentBaseURI}`
+    }
+
     // If it is a GET request, add the payload as query parameters, otherwise add to the body
     if (method === 'GET') {
       options.params = data
