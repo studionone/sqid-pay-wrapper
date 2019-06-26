@@ -4,7 +4,7 @@ This project contains helper functions for accessing the [SQID payments API](htt
 
 ## Deploying
 
-The compiled files are included in this repo. Please ensure that you run `npm run deploy` before making a pull request so that latest files are built and the `package-lock.json` is updated with the new version number
+The compiled files are included in this repo. Please ensure that you run `npm run deploy` before making a pull request so that latest files are built and the `package-lock.json` is updated with the new version number (Please update version number when making a PR for a new version)
 
 ## Usage
 
