@@ -41,7 +41,7 @@ export class SQID {
     }
 
     const options = {
-      baseURL: environmentBaseURI,
+      baseURL: `https://${environmentBaseURI}`,
       url: `/${endpoint}`,
       method,
     }

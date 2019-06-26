@@ -1,10 +1,11 @@
 {
   "name": "sqid-pay-wrapper",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A wrapper for sqid payment api",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src -d dist --copy-files"
+    "build": "babel src -d dist --copy-files",
+    "deploy": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
