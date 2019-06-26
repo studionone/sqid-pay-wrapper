@@ -74,3 +74,5 @@ Please view the linked SQID documentation for further information for required p
 | getToken            | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605679/getToken                |
 | tokenInfo           | string  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/541130753/tokenInfo             |
 | processTokenPayment | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/1605704/processTokenPayment     |
+| getPaymentPage      | string  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/544079873/Get+Payment+Page      |
+| payPaymentPage      | object  | https://sqidpay.atlassian.net/wiki/spaces/SRP/pages/544473089/Pay+with+Payment+Page |

@@ -19,19 +19,21 @@ export class SQID {
   /**
    * Send a request to the Sqid API
    * @param  {object} payload      - A payload object to be sent with the request
+   * @param  {string} method       - Method for sending the request
    * @param  {string} endpoint     - The relative path of the API endpoint
    * @param  {string} methodName   - The name of the SQID method
    * @param  {string} primaryKey   - The request primary key
    * @return {promise}             - A promise that resolves to the API response data
    */
-  _sqidRequest = (payload, endpoint, methodName, primaryKey = null) => {
+  _sqidRequest = (payload, method, endpoint, methodName, primaryKey = null) => {
     const { merchantCode, apiKey, environmentBaseURI } = this
     const hash = this.passPhrase
       ? this._generateHash(primaryKey)
       : null
 
+    // Only add the payload to the request body for POST requests
     const data = {
-      ...payload,
+      ...(method === 'POST' ? payload : {}),
       apiKey,
       hash,
       hashValue: hash,
@@ -42,8 +44,13 @@ export class SQID {
     const options = {
       baseURL: environmentBaseURI,
       url: `/${endpoint}`,
-      method: 'post',
+      method,
       data,
+    }
+
+    // If it is a GET request, add the payload as query parameters
+    if (method === 'GET') {
+      options.params = payload
     }
 
     return axios(options)
@@ -52,23 +59,48 @@ export class SQID {
   }
 
   /**
-   * Send a request to the Sqid API getToken endpoint
+   * Send a request to the Sqid API getToken endpoint to generate a reusable token for a customer
    * @param  {object} data - A payload object to be sent with the request
    * @return {promise}     - A promise that resolves to the API response data
    */
-  getToken = data => this._sqidRequest(data, 'post', 'getToken')
+  getToken = data => this._sqidRequest(data, 'POST', 'post', 'getToken')
 
   /**
-   * Send a request to the Sqid API tokenInfo endpoint
+   * Send a request to the Sqid API tokenInfo endpoint to retrieve information about the specified
+   * token
    * @param  {string} token - The SQID token to get info for
    * @return {promise}      - A promise that resolves to the API response data
    */
-  tokenInfo = token => this._sqidRequest({ token }, 'post', 'tokenInfo', token)
+  tokenInfo = token => this._sqidRequest({ token }, 'POST', 'post', 'tokenInfo', token)
 
   /**
-   * Send a request to the Sqid API processTokenPayment endpoint
-   * @param  {string} data - A payload object to be sent with the request
+   * Send a request to the Sqid API processTokenPayment endpoint in process a payment using a token
+   * @param  {object} data - A payload object to be sent with the request
+   * @return {promise}     - A promise that resolves to the API response data
+   */
+  processTokenPayment = (data) => {
+    const primaryKey = data.amount.toFixed(2)
+    return this._sqidRequest(data, 'POST', 'post', 'processTokenPayment', primaryKey)
+  }
+
+  /**
+   * Send a request to the Sqid API getPaymentPage endpoint to get an existing payment page
+   * @param  {string} payPageId - The ID of the payment page to retrieve
+   * @return {promise}          - A promise that resolves to the API response data
+   */
+  getPaymentPage = (payPageId) => {
+    const primaryKey = payPageId.toUpperCase()
+    return this._sqidRequest({ payPageId }, 'GET', 'paypage/get', false, primaryKey)
+  }
+
+  /**
+   * Send a request to the Sqid API payPaymentPage endpoint to process a payment using an existing
+   * payment page
+   * @param  {object} data  - A payload object to be sent with the request
    * @return {promise}      - A promise that resolves to the API response data
    */
-  processTokenPayment = data => this._sqidRequest(data, 'post', 'processTokenPayment', data.amount)
+  payPaymentPage = (data) => {
+    const primaryKey = data.payPageId.toUpperCase()
+    this._sqidRequest(data, 'POST', 'paypage/get', false, primaryKey)
+  }
 }
