@@ -108,6 +108,6 @@ export class SQID {
    */
   payPaymentPage = (data) => {
     const primaryKey = data.payPageId.toUpperCase()
-    return this._sqidRequest(data, 'POST', 'paypage/get', null, primaryKey)
+    return this._sqidRequest(data, 'POST', 'paypage/pay', null, primaryKey)
   }
 }
