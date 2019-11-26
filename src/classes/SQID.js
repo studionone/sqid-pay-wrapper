@@ -61,8 +61,6 @@ export class SQID {
     }
 
     return axios(options)
-      .then(res => res)
-      .catch(err => err)
   }
 
   /**
